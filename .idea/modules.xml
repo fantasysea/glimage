@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/glimage.iml" filepath="$PROJECT_DIR$/glimage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/glimage_android.iml" filepath="$PROJECT_DIR$/android/glimage_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/glimage_example_android.iml" filepath="$PROJECT_DIR$/example/android/glimage_example_android.iml" />
+    </modules>
+  </component>
+</project>
