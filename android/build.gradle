@@ -3,8 +3,12 @@ version '1.0'
 
 buildscript {
     repositories {
-        google()
-        jcenter()
+        maven{ url 'https://maven.aliyun.com/repository/google' }
+        maven{ url 'https://maven.aliyun.com/repository/jcenter' }
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        maven {url 'http://developer.huawei.com/repo/'}
+        maven { url 'https://jitpack.io' }
+
     }
 
     dependencies {
@@ -14,8 +18,12 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
-        google()
-        jcenter()
+        maven{ url 'https://maven.aliyun.com/repository/google' }
+        maven{ url 'https://maven.aliyun.com/repository/jcenter' }
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        maven {url 'http://developer.huawei.com/repo/'}
+        maven { url 'https://jitpack.io' }
+
     }
 }
 
@@ -30,4 +38,8 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+}
+dependencies {
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
