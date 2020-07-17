@@ -93,7 +93,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: new Center(
           child: ListView.builder(
-            itemCount: 26,
+            itemCount: 25,
             itemBuilder: (context, index) => Container(
               padding: EdgeInsets.all(10),
               alignment: Alignment.center,

@@ -90,6 +90,7 @@ class _FlutterImage extends State<FlutterImage> {
 
   Widget _getImage() {
     if (status == SUCCESS) {
+       print("SUCCESS  lallala");
       return Texture(textureId: textureImageId);
     } else if (status == FAIL) {
       return _errorWidget(context, error);
