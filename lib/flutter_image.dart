@@ -12,7 +12,7 @@ class FlutterImage extends StatefulWidget {
   final String imageUrl;
   final double width;
   final double height;
-
+  final BoxFit fit;
   /// Optional builder to further customize the display of the image.
   final ImageWidgetBuilder imageBuilder;
 
@@ -27,6 +27,7 @@ class FlutterImage extends StatefulWidget {
       this.imageUrl,
       this.width = double.infinity,
       this.height = double.infinity,
+      this.fit,
       this.placeholder,
       this.errorWidget,
       this.imageBuilder})

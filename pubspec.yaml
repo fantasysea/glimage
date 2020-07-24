@@ -1,6 +1,6 @@
 name: glimage
 description: A new flutter plugin project.
-version: 0.0.2
+version: 0.0.3
 author: steve
 homepage: http://triumen.com
 publish_to: http://192.168.0.92:8082
