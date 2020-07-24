@@ -22,7 +22,14 @@ class FlutterImage extends StatefulWidget {
   /// Widget displayed while the target [imageUrl] failed loading.
   final LoadingErrorWidgetBuilder errorWidget;
 
-  FlutterImage({Key key, this.imageUrl, this.width, this.height, this.placeholder, this.errorWidget, this.imageBuilder})
+  FlutterImage(
+      {Key key,
+      this.imageUrl,
+      this.width = double.infinity,
+      this.height = double.infinity,
+      this.placeholder,
+      this.errorWidget,
+      this.imageBuilder})
       : assert(imageUrl != null),
         super(key: key);
 
@@ -39,10 +46,25 @@ class _FlutterImage extends State<FlutterImage> {
   EventChannel eventChannel;
   int status = LOADING;
   Object error;
+
+
+  GlobalKey _containerKey = GlobalKey();
+  _getContainerSize() {
+    final RenderBox containerRenderBox = _containerKey.currentContext.findRenderObject();
+    final containerSize = containerRenderBox.size;
+    print("size is "+containerSize.width.toString()+" "+containerSize.height.toString());
+    init(containerSize);
+  }
+
+
+
   @override
   void initState() {
     super.initState();
-    init();
+    WidgetsBinding.instance.addPostFrameCallback(_onBuildCompleted);
+  }
+  _onBuildCompleted(Duration timestamp) {
+    _getContainerSize();
   }
 
   @override
@@ -56,14 +78,15 @@ class _FlutterImage extends State<FlutterImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: _containerKey,
       width: widget.width,
       height: widget.height,
       child: _getImage(),
     );
   }
 
-  Future<Null> init() async {
-    textureImageId = await Glimage.instance.image(widget.imageUrl, widget.width, widget.height);
+  Future<Null> init(Size size) async {
+    textureImageId = await Glimage.instance.image(widget.imageUrl, size.width, size.height);
     eventChannel = EventChannel("flutter.io/image/imageEvevts" + textureImageId.toString());
     eventChannel.receiveBroadcastStream().listen((event) {
       print(event);
@@ -90,7 +113,7 @@ class _FlutterImage extends State<FlutterImage> {
 
   Widget _getImage() {
     if (status == SUCCESS) {
-       print("SUCCESS  lallala");
+      print("SUCCESS  lallala");
       return Texture(textureId: textureImageId);
     } else if (status == FAIL) {
       return _errorWidget(context, error);

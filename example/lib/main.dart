@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
               alignment: Alignment.center,
               width: 200,
               height: 200,
-              child: FlutterImage(
+              child: CachedNetworkImage(
                 imageUrl:images[index],
                 width:200,
                 height:200,
